@@ -19,31 +19,49 @@ The nodes will contain minimal information.
 ### Numpy
 
 Edges are stored as adjacency list with source, sink, weight (3 x |E| matrix of floats -- Scipy COO format for sparce matrix).
+Multiple edges relationships can be captured.
 Nodes are stored as list of vectors of size K which depends on the type of graphs (|N| x K matrix of floats).
 Multiple node representation might be generated for each graph, hence multiple files.
 
-## Status
+## Work-plan
 
-At the begining, we will focus on static property of the code.
+For the first milestone, we will focus on static property of the code.
 Indeed the first application is to look into similarities between test codes in ROSE Compiler.
 This could help identifying the source of regression when new features are added.
 
-### First iteration
+### 1st sprint
 
-For the first iteration, the focus is put on ASTs.
-The nodes are **all possible nodes** in ROSE's Internal Representation (IR).
-The edges contain **any relation** between IR nodes.
+The focus is put on AST.
 
-### Second iteration
+#### Primary AST structure
 
-For the second iteration, I will various filters when generating the AST graphs.
-This will enable to look more closely into different aspect of the AST:
- * code structure
- * type hierarchy
- * declaration & scope
- * ...
+This AST will be generated through a simple traversal of ROSE's Internal Representation (IR).
+The resulting graph will represent the code's (tree) structure.
+Edges will be directed from childrens to parents.
 
-### Third iteration
+#### Nodes as bit-vector
 
-...
+The value associated with each node will be a bit vector representing the type of node.
+
+#### Symbol edges
+
+Additionnal edges from symbols.
+
+#### Type edges
+
+Additionnal edges from types.
+
+### 2nd sprint
+
+At this point, I will have nodes connected by three relationships: syntax, type, and symbol.
+What is the best way to express similarities using these various representations.
+
+#### Apply to ROSE test specimens
+
+Extracting graphs for all of ROSE test specimens.
+
+#### Build first similarity algorithm
+
+Given the three edges type, we need to build a graph similarity algorithm that can handle that.
+
 
