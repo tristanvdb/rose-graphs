@@ -9,6 +9,11 @@ Outputs can be generated in GraphViz format or a Numpy format.
 
 The goal of this tool is to build datasets of graphs for machine-learning research.
 
+## Licence
+
+I give myself until the end of the first sprint to figure it out.
+Probably going to be MIT Licence, CNPY code used to save Numpy array is distributed under MIT Licence.
+
 ## Outputs
 
 ### GraphViz
@@ -64,4 +69,19 @@ Extracting graphs for all of ROSE test specimens.
 
 Given the three edges type, we need to build a graph similarity algorithm that can handle that.
 
+## Acknowledgment
+
+### ROSE Compiler
+
+This graph extraction tool relies on the ROSE Compiler.
+ROSE is a free, open-source (BSD Licence) framework for source-to-source compilation.
+ROSE enables to write tools that leverage Abstract Syntax Tree (AST -- Internal Representation of source-code).
+
+I have been a long time user of the ROSE Compiler.
+
+### CNPY
+
+[A library to read/write .npy and .npz files in C/C++.](https://github.com/rogersce/cnpy)
+
+I have used CNPY for multiple projects where fast C/C++ is used to extract data that have to process in Python later (usually Python is used for Machine Learning).
 

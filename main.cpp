@@ -11,11 +11,15 @@ int main(int argc, char * argv[]) {
 
   std::string kgraph("");
   std::string output("");
+  std::string format("");
 
   for (int i = 1; i < argc; i++) {
     std::string arg(argv[i]);
     if (arg.substr(0,8) == "--graph=") {
       kgraph = arg.substr(8);
+    }
+    else if (arg.substr(0,9) == "--format=") {
+      format = arg.substr(9);
     }
     else if (arg.substr(0,9) == "--output=") {
       output = arg.substr(9);
@@ -35,8 +39,12 @@ int main(int argc, char * argv[]) {
 
   graph->stats(std::cout);
 
-  graph->toNPY(output);
-  graph->toDOT(output);
+  if (format == "npy")
+    graph->toNPY(output);
+  else if (format == "dot")
+    graph->toDOT(output);
+  else
+    assert(false);
 
   delete graph;
 

@@ -1,8 +1,10 @@
 
+#include <map>
 #include <vector>
 #include <string>
 #include <iostream>
 
+class SgNode;
 class SgProject;
 
 class GraphExtractor {
@@ -21,6 +23,10 @@ class GraphExtractor {
 };
 
 class AstGraphExtractor : public GraphExtractor {
+  protected:
+    std::vector<SgNode *> p_nodes;
+    std::map<SgNode *, SgNode *> p_struct_edges;
+
   public:
     AstGraphExtractor(const std::vector<std::string> & args);
     virtual void extract();
