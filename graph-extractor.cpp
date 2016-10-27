@@ -1,6 +1,10 @@
 
 #include "graph-extractor.hpp"
+
+#include "cnpy.hpp"
+
 #include "rose.h"
+
 
 GraphExtractor::GraphExtractor(const std::vector<std::string> & args) : 
   project(frontend(args))
