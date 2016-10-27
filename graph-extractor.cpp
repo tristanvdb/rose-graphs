@@ -16,7 +16,11 @@ GraphExtractor::~GraphExtractor() {
 }
 
 void GraphExtractor::stats(std::ostream & out) const {
-  // TODO
+  const std::vector<SgNode *> & nodes = getNodes();
+  out << "nodes: " << nodes.size() << std::endl;
+
+  const std::vector<std::pair<SgNode *, SgNode *> > & edges = getEdges();
+  out << "edges: " << edges.size() << std::endl;
 }
 
 void GraphExtractor::toDOT(const std::string & output) const {
