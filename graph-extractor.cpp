@@ -18,11 +18,10 @@ GraphExtractor::~GraphExtractor() {
 }
 
 void GraphExtractor::stats(std::ostream & out) const {
-  const std::vector<SgNode *> & nodes = getNodes();
-  out << "nodes: " << nodes.size() << std::endl;
+  out << "nodes: " << p_nodes.size() << std::endl;
 
-  const std::vector<std::pair<SgNode *, SgNode *> > & edges = getEdges();
-  out << "edges: " << edges.size() << std::endl;
+  for (int i = 0; i < p_edges.length(); i++)
+    out << p_edges[i].first << ": " << p_edges[i].second.size() << std::endl;
 }
 
 void GraphExtractor::toDOT(const std::string & output) const {
@@ -76,8 +75,6 @@ void save_edges(
 }
 
 void GraphExtractor::toNPY(const std::string & output) const {
-  const std::vector<SgNode *> & nodes = getNodes();
-
   std::map<SgNode *, size_t> ntmap;
   save_nodes(output, p_nodes, ntmap);
 
