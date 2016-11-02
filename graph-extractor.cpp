@@ -44,7 +44,7 @@ void GraphExtractor::toNPY(const std::string & output) const {
     }
 
     std::ostringstream oss;
-    oss << "node_" << output << ".npy";
+    oss << output << "_nodes.npy";
     const unsigned int shape[] = { n , m };
     cnpy::npy_save(oss.str().c_str(), nodes_, shape, 2);
 
@@ -62,7 +62,7 @@ void GraphExtractor::toNPY(const std::string & output) const {
     }
 
     std::ostringstream oss;
-    oss << "edge_" << output << ".npy";
+    oss << output << "_edges.npy";
     const unsigned int shape[] = { 3 , n };
     cnpy::npy_save(oss.str().c_str(), edges_, shape, 2);
     delete edges_; 

@@ -39,7 +39,8 @@ check: test_0.npy
 #### Clean
 
 clean:
-	rm -f graph-extractor.o ast-graph-extractor.o main.o graph-extractor
+	rm -f graph-extractor.o ast-graph-extractor.o main.o cnpy.o graph-extractor
+	rm -f *.npy
 
 ####
 
