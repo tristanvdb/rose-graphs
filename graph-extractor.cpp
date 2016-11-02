@@ -60,8 +60,8 @@ void save_edges(
   size_t n = edges.size();
   float * edges_ = new float[3*n];
   for (int i = 0; i < n; i++) {
-    size_t src = ntmap[edges.at(i).first];
-    size_t sink = ntmap[edges.at(i).second];
+    size_t src = ntmap.at(edges.at(i).first);
+    size_t sink = ntmap.at(edges.at(i).second);
     edges_[        i] = (float)src;
     edges_[    n + i] = (float)sink;
     edges_[2 * n + i] = 1.;
