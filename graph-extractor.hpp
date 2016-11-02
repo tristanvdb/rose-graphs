@@ -28,9 +28,5 @@ class AstGraphExtractor : public GraphExtractor {
   public:
     AstGraphExtractor(const std::vector<std::string> & args);
     virtual void extract();
-
-  protected:
-    virtual const std::vector<SgNode *> & getNodes() const;
-    virtual const std::vector<std::pair<SgNode *, SgNode *> > & getEdges(unsigned s) const;
 };
 

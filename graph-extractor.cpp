@@ -30,6 +30,7 @@ void GraphExtractor::toDOT(const std::string & output) const {
 }
 
 void save_nodes(
+  const std::string & output,
   const std::vector<SgNode *> & nodes,
   std::map<SgNode *, size_t> & ntmap
 ) {
@@ -52,8 +53,9 @@ void save_nodes(
 }
 
 void save_edges(
+  const std::string & output,
   const std::vector<std::pair<SgNode *, SgNode *> > & edges,
-  const std::map<SgNode *, size_t> & ntmap
+  const std::map<SgNode *, size_t> & ntmap,
   const std::string & suffix
 ) {
   size_t n = edges.size();
@@ -77,9 +79,9 @@ void GraphExtractor::toNPY(const std::string & output) const {
   const std::vector<SgNode *> & nodes = getNodes();
 
   std::map<SgNode *, size_t> ntmap;
-  save_nodes(p_nodes, ntmap);
+  save_nodes(output, p_nodes, ntmap);
 
   for (int i = 0; i < p_edges.length(); i++)
-    save_edges(p_edges[i].second, ntmap, p_edges[i].first);
+    save_edges(output, p_edges[i].second, ntmap, p_edges[i].first);
 }
 
