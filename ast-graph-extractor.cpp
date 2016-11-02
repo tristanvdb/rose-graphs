@@ -41,7 +41,7 @@ void AstGraphExtractor::extract() {
     }
     SgFunctionRefExp * fncref = isSgFunctionRefExp(*it_node);
     if (fncref != NULL) {
-      SgFunctionDeclaration * fncdecl = isSgFunctionDeclaration(varref->get_symbol_i()->get_declaration());
+      SgFunctionDeclaration * fncdecl = isSgFunctionDeclaration(fncref->get_symbol_i()->get_declaration());
       assert(fncdecl != NULL);
       p_edges[1].second.push_back(std::pair<SgNode *, SgNode *>(fncdecl, fncref));
     }
