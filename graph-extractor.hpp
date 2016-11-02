@@ -10,6 +10,8 @@ class SgProject;
 class GraphExtractor {
   protected:
     SgProject * project;
+    std::vector<SgNode *> p_nodes;
+    std::vector<std::pair<std::string, std::vector<std::pair<SgNode *, SgNode *> > > > p_edges;
 
   public:
     GraphExtractor(const std::vector<std::string> & args);
@@ -20,30 +22,15 @@ class GraphExtractor {
     void stats(std::ostream & out) const;
     void toNPY(const std::string & output) const;
     void toDOT(const std::string & output) const;
-
-  protected:
-    virtual const std::vector<SgNode *> & getNodes() const = 0;
-    virtual const std::vector<std::pair<SgNode *, SgNode *> > & getEdges() const = 0;
 };
 
 class AstGraphExtractor : public GraphExtractor {
-  public:
-    typedef enum {
-      structure,
-      type,
-      symbol
-    } EdgeRelationKind;
-
-  protected:
-    std::vector<SgNode *> p_nodes;
-    std::vector<std::pair<SgNode *, SgNode *> > p_struct_edges;
-
   public:
     AstGraphExtractor(const std::vector<std::string> & args);
     virtual void extract();
 
   protected:
     virtual const std::vector<SgNode *> & getNodes() const;
-    virtual const std::vector<std::pair<SgNode *, SgNode *> > & getEdges() const;
+    virtual const std::vector<std::pair<SgNode *, SgNode *> > & getEdges(unsigned s) const;
 };
 
