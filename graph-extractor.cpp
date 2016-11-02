@@ -20,7 +20,7 @@ GraphExtractor::~GraphExtractor() {
 void GraphExtractor::stats(std::ostream & out) const {
   out << "nodes: " << p_nodes.size() << std::endl;
 
-  for (int i = 0; i < p_edges.length(); i++)
+  for (int i = 0; i < p_edges.size(); i++)
     out << p_edges[i].first << ": " << p_edges[i].second.size() << std::endl;
 }
 
@@ -39,7 +39,7 @@ void save_nodes(
   for (int i = 0; i < n*m; i++)
     nodes_[i] = 0.;
   for (int i = 0; i < n; i++) {
-    ntmap.insert(std::pair<SgNode *, size_t>(nodes[i],i));
+    ntmap.insert(std::pair<SgNode *, size_t>(nodes.at(i),i));
     nodes_[i * m + nodes[i]->variantT()] += 1.;
   }
 
@@ -60,8 +60,8 @@ void save_edges(
   size_t n = edges.size();
   float * edges_ = new float[3*n];
   for (int i = 0; i < n; i++) {
-    size_t src = ntmap[edges[i].first];
-    size_t sink = ntmap[edges[i].second];
+    size_t src = ntmap[edges.at(i).first];
+    size_t sink = ntmap[edges.at(i).second];
     edges_[        i] = (float)src;
     edges_[    n + i] = (float)sink;
     edges_[2 * n + i] = 1.;
@@ -78,7 +78,7 @@ void GraphExtractor::toNPY(const std::string & output) const {
   std::map<SgNode *, size_t> ntmap;
   save_nodes(output, p_nodes, ntmap);
 
-  for (int i = 0; i < p_edges.length(); i++)
+  for (int i = 0; i < p_edges.size(); i++)
     save_edges(output, p_edges[i].second, ntmap, p_edges[i].first);
 }
 
