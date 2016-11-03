@@ -7,7 +7,7 @@ LDFLAGS=-L$(ROSEDIR)/lib -L$(BOOSTDIR)/lib
 LIBS=-lrose
 
 CXX=g++
-CXXFLAGS=
+CXXFLAGS=-g
 
 #### Build
 

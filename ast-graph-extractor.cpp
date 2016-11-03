@@ -14,7 +14,8 @@ struct AstGraphExtractorTraversal : public  AstBottomUpProcessing<SgNode *> {
   virtual SgNode * evaluateSynthesizedAttribute(SgNode * node, SynthesizedAttributesList synth_attrs) {
     p_nodes.push_back(node);
     for (SynthesizedAttributesList::iterator it = synth_attrs.begin(); it != synth_attrs.end(); it++) {
-      p_edges.push_back(std::pair<SgNode *, SgNode *>(*it, node));
+      if (*it != NULL)
+        p_edges.push_back(std::pair<SgNode *, SgNode *>(*it, node));
     }
     return node;
   }

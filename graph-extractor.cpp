@@ -39,12 +39,12 @@ void save_nodes(
   for (int i = 0; i < n*m; i++)
     nodes_[i] = 0.;
   for (int i = 0; i < n; i++) {
-    ntmap.insert(std::pair<SgNode *, size_t>(nodes.at(i),i));
+    ntmap.insert(std::pair<SgNode *, size_t>(nodes[i],i));
     nodes_[i * m + nodes[i]->variantT()] += 1.;
   }
 
   std::ostringstream oss;
-  oss << output << "_nodes.npy";
+  oss << output << "nodes.npy";
   const unsigned int shape[] = { n , m };
   cnpy::npy_save(oss.str().c_str(), nodes_, shape, 2);
 
@@ -60,15 +60,18 @@ void save_edges(
   size_t n = edges.size();
   float * edges_ = new float[3*n];
   for (int i = 0; i < n; i++) {
-    size_t src = ntmap.at(edges.at(i).first);
-    size_t sink = ntmap.at(edges.at(i).second);
+//  std::cout << "edge " << suffix << " " << i << std::endl;
+//  std::cout << "  " << edges[i].first << std::endl;
+//  std::cout << "  " << edges[i].second << std::endl;
+    size_t src = ntmap.at(edges[i].first);
+    size_t sink = ntmap.at(edges[i].second);
     edges_[        i] = (float)src;
     edges_[    n + i] = (float)sink;
     edges_[2 * n + i] = 1.;
   }
 
   std::ostringstream oss;
-  oss << output << "_edges_" << suffix << ".npy";
+  oss << output << "edges_" << suffix << ".npy";
   const unsigned int shape[] = { 3 , n };
   cnpy::npy_save(oss.str().c_str(), edges_, shape, 2);
   delete edges_; 
